@@ -25,6 +25,16 @@ export default new Vuex.Store({
       });
       localStorage.setItem('tasks', JSON.stringify(state.tasks));
     },
+    changeTitle(state, editData) {
+      console.log('changeTitle', editData);
+      state.tasks = state.tasks.map((task) => {
+        if (task.date === editData.date) {
+          task.title = editData.title;
+        }
+        return task;
+      });
+      localStorage.setItem('tasks', JSON.stringify(state.tasks));
+    },
   },
   actions: {
     createTask({commit}, task) {
@@ -36,10 +46,16 @@ export default new Vuex.Store({
     checkTask({commit}, taskDate) {
       commit('checkTask', taskDate);
     },
+    changeTitle({commit}, editData) {
+      commit('changeTitle', editData);
+    },
   },
   modules: {
   },
   getters: {
-    tasks: state => state.tasks
+    tasks: state => state.tasks,
+    getTask: state => date => {
+      return state.tasks.find(task => String(task.date) === date) || false;
+    }
   }
 });

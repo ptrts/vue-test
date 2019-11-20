@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import ToDoList from '../views/List.vue';
+import ToDoList from './../views/List.vue';
 
 Vue.use(VueRouter);
 
@@ -16,9 +16,9 @@ const routes = [
     component: ToDoList
   },
   {
-    path: '/to-do-item/:id',
+    path: '/edit-to-do/:id',
     name: 'toDoItem',
-    component: () => import('../components/ToDoItem.vue')
+    component: () => import('../views/EditToDo')
   }
 ];
 

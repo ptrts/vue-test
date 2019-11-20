@@ -20,6 +20,7 @@
           v-bind:key="item.date"
           @remove-task="removeTask"
           @check-task="checkTask"
+          @edit-task="editTask"
         />
       </ul>
       <div v-else>
@@ -55,7 +56,7 @@
         visibleTasks: []
       }
     },
-    beforeMount: function() {
+    beforeMount() {
       this.updateVisibleTasks();
     },
     methods: {
@@ -73,6 +74,9 @@
         this.$store.dispatch('checkTask', taskDate).then(() => {
           this.updateVisibleTasks();
         });
+      },
+      editTask(taskDate) {
+        this.$router.push(`/edit-to-do/${taskDate}`);
       },
       updatePage(pageNumber) {
         this.currentPage = pageNumber;

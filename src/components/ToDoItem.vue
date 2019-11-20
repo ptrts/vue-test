@@ -8,7 +8,10 @@
           :checked="task.completed"
         >
       </div>
-      <div class="col-8 title-col">
+      <div
+        v-on:click="$emit('edit-task', task.date)"
+        class="col-8 title-col"
+      >
         {{task.title}}
       </div>
       <div class="col-3 delete-col">
